@@ -2,6 +2,7 @@ package com.globalhiddenodds.ceres.dagger
 
 import android.content.Context
 import com.globalhiddenodds.ceres.App
+import com.globalhiddenodds.ceres.models.persistent.network.ConnectionNetwork
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -14,4 +15,8 @@ class AppModule(private val app: App) {
         return this.app
     }
 
+    @Provides
+    fun provideConnectionNetwork(): ConnectionNetwork {
+        return ConnectionNetwork(app as Context)
+    }
 }

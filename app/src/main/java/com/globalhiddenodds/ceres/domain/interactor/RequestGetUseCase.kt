@@ -10,14 +10,16 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.Subject
 
-abstract class RequestGetUseCase constructor(private val serviceRemoteGet:
+abstract class RequestGetUseCase constructor(serviceRemoteGet:
                                              ServiceRemoteGet) {
     private var serviceGet: IServiceGet? = null
-    protected var disposable: CompositeDisposable = CompositeDisposable()
+    private var disposable: CompositeDisposable = CompositeDisposable()
     var messageError: String = ""
     var observableMessage: Subject<String> = PublishSubject.create()
 
     init {
+        observableMessage
+                .subscribe { messageError }
         try {
             this.serviceGet = serviceRemoteGet.getService()
         }catch (ie: IllegalArgumentException){
@@ -52,6 +54,9 @@ abstract class RequestGetUseCase constructor(private val serviceRemoteGet:
     }
 
     protected abstract  fun getJsonArray(messageOfService: MessageOfService)
-    protected abstract fun sendMessageError(message: String)
+    protected fun sendMessageError(message: String){
+        this.messageError =  message
+        this.observableMessage.onNext(this.messageError)
+    }
 
 }

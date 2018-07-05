@@ -2,11 +2,13 @@ package com.globalhiddenodds.ceres.dagger
 
 import com.globalhiddenodds.ceres.domain.UIThread
 import com.globalhiddenodds.ceres.domain.interactor.UrlVideoGetUseCase
+import com.globalhiddenodds.ceres.domain.interactor.VerifyLoginUseCase
 import com.globalhiddenodds.ceres.models.executor.JobExecutor
 import com.globalhiddenodds.ceres.models.interfaces.IPostExecutionThread
 import com.globalhiddenodds.ceres.models.interfaces.IThreadExecutor
 import com.globalhiddenodds.ceres.models.persistent.network.ServiceRemoteGet
 import com.globalhiddenodds.ceres.models.persistent.network.ServiceRemotePost
+import com.globalhiddenodds.ceres.presentation.presenter.LoginPresenter
 import com.globalhiddenodds.ceres.presentation.presenter.UrlVideoPresenter
 import dagger.Module
 import dagger.Provides
@@ -40,6 +42,18 @@ class PresenterModule {
     @Provides
     fun provideServiceRemoteGet(): ServiceRemoteGet {
         return ServiceRemoteGet()
+    }
+
+    @Provides
+    fun provideVerifyLoginUseCase(serviceRemotePost:
+                                  ServiceRemotePost): VerifyLoginUseCase{
+        return VerifyLoginUseCase(serviceRemotePost)
+    }
+
+    @Provides
+    fun provideLoginPresenter(verifyLoginUseCase:
+                              VerifyLoginUseCase): LoginPresenter{
+        return LoginPresenter(verifyLoginUseCase)
     }
 
     @Provides

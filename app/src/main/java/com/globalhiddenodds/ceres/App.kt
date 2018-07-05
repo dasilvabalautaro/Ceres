@@ -4,8 +4,13 @@ import android.app.Application
 import com.globalhiddenodds.ceres.dagger.AppComponent
 import com.globalhiddenodds.ceres.dagger.AppModule
 import com.globalhiddenodds.ceres.dagger.DaggerAppComponent
+import com.globalhiddenodds.ceres.models.persistent.network.ConnectionNetwork
+import javax.inject.Inject
 
 class App: Application()  {
+    @Inject
+    lateinit var connectionNetwork: ConnectionNetwork
+
     companion object{
         lateinit var appComponent: AppComponent
 

@@ -1,11 +1,14 @@
 package com.globalhiddenodds.ceres.presentation.view.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.AttributeSet
+import android.view.View
 import com.globalhiddenodds.ceres.R
-import com.globalhiddenodds.ceres.presentation.view.fragment.VideoFragment
+import com.globalhiddenodds.ceres.presentation.view.fragment.LoginFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        val videoFragment = VideoFragment()
-        addFragment(videoFragment)
+        val loginFragment = LoginFragment()
+        addFragment(loginFragment)
     }
 
     @SuppressLint("PrivateResource")
@@ -26,5 +29,6 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.flContent, newFragment, newFragment.javaClass.simpleName)
                 .commit()
     }
+
 
 }

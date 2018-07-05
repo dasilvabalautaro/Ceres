@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Ceres</string>
+    <string name="lbl_sign_in">Sign In</string>
+    <string name="lbl_logo_description">Logo</string>
+    <string name="hint_text_user">User</string>
+    <string name="hint_text_password">Password</string>
+    <string name="lbl_send">Send</string>
+    <string name="invalid_form">Form Invalidated Successfully</string>
+    <string name="data_sent">Data sent</string>
+    <string name="lbl_video">Video</string>
+    <string name="lbl_sales">Sales</string>
+    <string name="lbl_export">Export</string>
+    <string name="lbl_sales_register">Sales Registered</string>
+    <string name="lbl_description_list">The latest weight control records completed by date order. For more detail click on the register.</string>
 </resources>
