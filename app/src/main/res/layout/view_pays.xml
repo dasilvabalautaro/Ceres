@@ -4,22 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp"
     android:orientation="vertical"
-    android:background="@drawable/gradient"
+    android:background="@drawable/gradient_invert"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="@string/lbl_sales_register"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/lbl_pays_register"
         android:textSize="24sp"/>
 
     <com.actinarium.aligned.TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lbl_description_list"
+        android:text="@string/lbl_description_pays_list"
         android:textSize="16sp"
-        android:background="@drawable/border_title"
+        android:background="@drawable/border_title_invert"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:layout_marginTop="10dp"
@@ -27,13 +28,13 @@
         app:leading="20sp"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/sr_sales"
+        android:id="@+id/sr_pays"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_sales"
+            android:id="@+id/rv_pays"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="vertical"/>

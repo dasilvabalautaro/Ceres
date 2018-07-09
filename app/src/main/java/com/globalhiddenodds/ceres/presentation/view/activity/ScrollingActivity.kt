@@ -14,6 +14,7 @@ import android.support.design.widget.BottomSheetBehavior
 import android.support.v4.app.Fragment
 import butterknife.OnClick
 import com.globalhiddenodds.ceres.presentation.view.fragment.LoginFragment
+import com.globalhiddenodds.ceres.presentation.view.fragment.PaysFragment
 import com.globalhiddenodds.ceres.presentation.view.fragment.SalesFragment
 
 
@@ -25,6 +26,17 @@ class ScrollingActivity: AppCompatActivity() {
         this.navigate<WebActivity>()
         this.finish()
     }
+    @OnClick(R.id.bt_pays)
+    fun goPays(){
+        val paysFragment = PaysFragment()
+        addFragment(paysFragment)
+    }
+    @OnClick(R.id.bt_sales)
+    fun goSales(){
+        val salesFragment = SalesFragment()
+        addFragment(salesFragment)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scrolling)
@@ -36,6 +48,7 @@ class ScrollingActivity: AppCompatActivity() {
         behavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 // React to dragging events
+
                 println("Buttom sheet onSlide")
 
             }

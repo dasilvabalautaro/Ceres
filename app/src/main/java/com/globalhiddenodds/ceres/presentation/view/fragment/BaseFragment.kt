@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment
 import android.widget.Toast
 import com.globalhiddenodds.ceres.App
 import com.globalhiddenodds.ceres.dagger.PresenterModule
+import com.globalhiddenodds.ceres.presentation.presenter.GetPaysPresenter
+import com.globalhiddenodds.ceres.presentation.presenter.GetSalesPresenter
 import com.globalhiddenodds.ceres.presentation.presenter.LoginPresenter
 import com.globalhiddenodds.ceres.presentation.presenter.UrlVideoPresenter
 import io.reactivex.disposables.CompositeDisposable
@@ -25,6 +27,12 @@ abstract class BaseFragment: Fragment() {
 
     @Inject
     lateinit var loginPresenter: LoginPresenter
+
+    @Inject
+    lateinit var getSalesPresenter: GetSalesPresenter
+
+    @Inject
+    lateinit var getPaysPresenter: GetPaysPresenter
 
     protected var disposable: CompositeDisposable = CompositeDisposable()
 

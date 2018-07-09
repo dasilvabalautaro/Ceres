@@ -115,7 +115,6 @@ class LoginFragment: BaseFragment(), ILoadDataView {
             val prefs = PreferenceHelper.customPrefs(context!!,
                     Constants.preference_ceres)
             prefs[Constants.token] = this.userModel!!.token
-            println("token: ${this.userModel!!.token}")
             activity!!.navigate<ScrollingActivity>()
             activity!!.finish()
         }

@@ -9,7 +9,18 @@
     <string name="data_sent">Data sent</string>
     <string name="lbl_video">Video</string>
     <string name="lbl_sales">Sales</string>
-    <string name="lbl_export">Export</string>
+    <string name="lbl_pays">Pays</string>
     <string name="lbl_sales_register">Sales Registered</string>
-    <string name="lbl_description_list">The latest weight control records completed by date order. For more detail click on the register.</string>
+    <string name="lbl_pays_register">Pays Registered</string>
+    <string name="lbl_description_list">The latest sale control records completed by day.</string>
+    <string name="lbl_description_pays_list">The latest pay control records completed by day.</string>
+    <string name="lbl_id">Sale Id:</string>
+    <string name="lbl_date">Date:</string>
+    <string name="lbl_mount">Mount Bs.:</string>
+    <string name="lbl_product">Product:</string>
+    <string name="lbl_client">Client:</string>
+    <string name="lbl_price">Price Bs.:</string>
+    <string name="lbl_weight">Weight Kg.:</string>
+    <string name="lbl_operator">Operator:</string>
+    <string name="list_not_found">List not found</string>
 </resources>

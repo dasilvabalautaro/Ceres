@@ -13,27 +13,30 @@ import butterknife.ButterKnife
 import com.globalhiddenodds.ceres.R
 import com.globalhiddenodds.ceres.models.persistent.preferences.PreferenceHelper
 import com.globalhiddenodds.ceres.models.persistent.preferences.PreferenceHelper.get
+import com.globalhiddenodds.ceres.presentation.components.ItemPayAdapter
+import com.globalhiddenodds.ceres.presentation.components.ItemPayView
 import com.globalhiddenodds.ceres.presentation.components.ItemSaleAdapter
+import com.globalhiddenodds.ceres.presentation.data.PayModel
 import com.globalhiddenodds.ceres.presentation.data.SaleModel
 import com.globalhiddenodds.ceres.presentation.interfaces.ILoadDataView
 import com.globalhiddenodds.ceres.tools.Constants
 import com.globalhiddenodds.ceres.tools.UtilsFormat
 import kotlinx.coroutines.experimental.async
 
-class SalesFragment: BaseFragment(), ILoadDataView {
+class PaysFragment: BaseFragment(), ILoadDataView {
 
-    private var adapter: ItemSaleAdapter? = null
-    private var listSale: ArrayList<SaleModel> = ArrayList()
-    private var saleModel: SaleModel? = null
-    @BindView(R.id.rv_sales)
-    @JvmField var rvSales: RecyclerView? = null
-    @BindView(R.id.sr_sales)
-    @JvmField var srSales: SwipeRefreshLayout? = null
+    private var adapter: ItemPayAdapter? = null
+    private var listPay: ArrayList<PayModel> = ArrayList()
+    private var payModel: PayModel? = null
+    @BindView(R.id.rv_pays)
+    @JvmField var rvPays: RecyclerView? = null
+    @BindView(R.id.sr_pays)
+    @JvmField var srPays: SwipeRefreshLayout? = null
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val root: View = inflater.inflate(R.layout.view_sales,
+        val root: View = inflater.inflate(R.layout.view_pays,
                 container,false)
         ButterKnife.bind(this, root)
         return root
@@ -41,14 +44,14 @@ class SalesFragment: BaseFragment(), ILoadDataView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        getSalesPresenter.view = this
+        getPaysPresenter.view = this
         setupRecyclerView()
         setupSwipeRefresh()
-        getSalesDay()
+        getPaysDay()
     }
 
-    private fun getSalesDay(){
-        getSalesPresenter.executeGetList(loadPack())
+    private fun getPaysDay(){
+        getPaysPresenter.executeGetList(loadPack())
     }
 
     private fun loadPack(): MutableMap<String, Any>{
@@ -63,27 +66,26 @@ class SalesFragment: BaseFragment(), ILoadDataView {
     }
 
     private fun setupRecyclerView(){
-        rvSales!!.setHasFixedSize(true)
-        rvSales!!.layoutManager = LinearLayoutManager(activity,
+        rvPays!!.setHasFixedSize(true)
+        rvPays!!.layoutManager = LinearLayoutManager(activity,
                 LinearLayoutManager.VERTICAL, false)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            UtilsFormat.addDecorationRecycler(rvSales!!, context!!)
+            UtilsFormat.addDecorationRecycler(rvPays!!, context!!)
         }
-        adapter = ItemSaleAdapter{
-            this.saleModel = it
+        adapter = ItemPayAdapter{
+            this.payModel = it
 
         }
-        rvSales!!.adapter = adapter
+        rvPays!!.adapter = adapter
     }
 
-    private fun setupSwipeRefresh() = srSales!!.setOnRefreshListener(
+    private fun setupSwipeRefresh() = srPays!!.setOnRefreshListener(
             this::refreshData)
 
     private fun refreshData(){
-        getSalesDay()
-        srSales!!.isRefreshing = false
+        getPaysDay()
+        srPays!!.isRefreshing = false
     }
-
     override fun showMessage(message: String) {
         context!!.toast(message)
     }
@@ -99,11 +101,11 @@ class SalesFragment: BaseFragment(), ILoadDataView {
     override fun <T> executeTask(objList: List<T>) {
         if (objList.isNotEmpty()){
             async {
-                listSale = ArrayList(objList
-                        .filterIsInstance<SaleModel>() as ArrayList)
-                adapter!!.setObjectList(listSale)
+                listPay = ArrayList(objList
+                        .filterIsInstance<PayModel>() as ArrayList)
+                adapter!!.setObjectList(listPay)
                 activity!!.runOnUiThread {
-                    rvSales!!.scrollToPosition(0)
+                    rvPays!!.scrollToPosition(0)
                 }
             }
 
@@ -111,4 +113,5 @@ class SalesFragment: BaseFragment(), ILoadDataView {
             context!!.toast(context!!.getString(R.string.list_not_found))
         }
     }
+
 }
