@@ -3,17 +3,16 @@ package com.globalhiddenodds.ceres.presentation.view.activity
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.EditText
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.globalhiddenodds.ceres.R
 import android.support.design.widget.BottomSheetBehavior
 import android.support.v4.app.Fragment
 import butterknife.OnClick
-import com.globalhiddenodds.ceres.presentation.view.fragment.LoginFragment
 import com.globalhiddenodds.ceres.presentation.view.fragment.PaysFragment
 import com.globalhiddenodds.ceres.presentation.view.fragment.SalesFragment
 
@@ -42,6 +41,12 @@ class ScrollingActivity: AppCompatActivity() {
         setContentView(R.layout.activity_scrolling)
         ButterKnife.bind(this)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            supportActionBar!!.setBackgroundDrawable(this.getDrawable(R.drawable.head_back))
+        }else{
+            supportActionBar!!.setBackgroundDrawable(this.resources
+                    .getDrawable(R.drawable.head_back))
+        }
         val salesFragment = SalesFragment()
         addFragment(salesFragment)
         val behavior = BottomSheetBehavior.from(bottomSheet)

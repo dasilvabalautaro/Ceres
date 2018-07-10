@@ -1,12 +1,10 @@
 package com.globalhiddenodds.ceres.presentation.view.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.AttributeSet
-import android.view.View
 import com.globalhiddenodds.ceres.R
 import com.globalhiddenodds.ceres.presentation.view.fragment.LoginFragment
 
@@ -16,6 +14,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            supportActionBar!!.setBackgroundDrawable(this.getDrawable(R.drawable.head_back))
+        }else{
+            supportActionBar!!.setBackgroundDrawable(this.resources
+                    .getDrawable(R.drawable.head_back))
+        }
         val loginFragment = LoginFragment()
         addFragment(loginFragment)
     }
